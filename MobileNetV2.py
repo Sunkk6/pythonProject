@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-num_epoch = 10
+num_epoch = 20
 batch_size = 32
 learning_rate = 0.001
 
