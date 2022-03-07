@@ -18,7 +18,7 @@ predictions = tf.keras.layers.Dense(3, activation='softmax')(x)
 # 这部分创建了一个包含输入层和三个全连接层的模型
 model = tf.keras.Model(inputs=inputs, outputs=predictions)
 opt = tf.optimizers.Adam(1e-3)
-for epoch in range(10):
+for epoch in range(1):
     for _data, lable in zip(iris_data, iris_target):
         # print(_data)
         with tf.GradientTape() as tape:
@@ -28,3 +28,5 @@ for epoch in range(10):
             opt.apply_gradients(zip(grads, model.trainable_variables))
     print('{0}次:'.format(epoch+1), 'Training loss is :', loss_value.numpy())
 # print(model.trainable_variables)
+print(grads)
+
