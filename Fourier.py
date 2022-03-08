@@ -26,7 +26,7 @@ for i in range(weight_column):
     cos_all += cos[i]
 signal_all = sin_all + cos_all
 
-loss = get_mse(square, sin[0])
+loss = get_mse(square, signal_all)
 
 # print(grads)
 plt.plot(t, square)
