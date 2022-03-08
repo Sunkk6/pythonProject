@@ -19,21 +19,21 @@ sin = {}
 cos = {}
 sin_all = 0
 cos_all = 0
-for i in range(len(weight) - 1):
+for i in range(weight_column):
     sin[i] = weight[0][i] * np.sin((i + 1) * 2 * np.pi / 0.8 * t)
     cos[i] = weight[1][i] * np.cos((i + 1) * 2 * np.pi / 0.8 * t)
     sin_all += sin[i]
     cos_all += cos[i]
 signal_all = sin_all + cos_all
 
-loss = get_mse(square, signal_all)
+loss = get_mse(square, sin[0])
 
 # print(grads)
 plt.plot(t, square)
 plt.plot(t, signal_all)
 plt.ylim(-2, 2)
 plt.show()
-# print(weight)
+# print(len(weight))
 print(loss)
 # print(len(square), len(signal_all))
 # for i in range(epoch):
