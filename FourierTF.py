@@ -6,7 +6,7 @@ import time
 
 num_epoch = 100
 lr = tf.constant(0.1)
-weight_row = 50
+weight_row = 100
 weight = tf.Variable(np.ones((weight_row, 2), dtype=np.float32))
 f = 1 / 0.8
 t = np.linspace(0, 1, 500, endpoint=False)
@@ -19,7 +19,7 @@ def get_mse(true, pred):
 
 
 # optimizer = tf.keras.optimizers.SGD(learning_rate=lr)
-
+loss_plt = {}
 sin = {}
 cos = {}
 for e in range(num_epoch):
@@ -35,6 +35,7 @@ for e in range(num_epoch):
             cos_all += cos[i]
         signal_all = sin_all + cos_all
         loss = get_mse(square, signal_all)
+    loss_plt[e] = np.array(loss)
     grads = tape.gradient(loss, weight)
     w = tf.constant(weight)
     weight = tf.Variable(tf.subtract(weight, tf.multiply(lr, grads)))
@@ -45,9 +46,6 @@ for e in range(num_epoch):
     plt.plot(t, signal_all)
     plt.pause(0.002)
     print('第{}次:'.format(e+1), 'Training loss is :', loss.numpy())
-
-
-
-
-
-
+plt.figure(2)
+plt.ylim(0, 0.005)
+plt.plot(np.linspace(0, num_epoch, num_epoch, endpoint=False), loss_plt.values())

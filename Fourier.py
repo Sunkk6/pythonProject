@@ -8,7 +8,7 @@ def get_mse(true, pred):  # 定义损失函数（均方差）
     return np.dot((true - pred), (true - pred).T) / len(true) * 100
 
 
-epoch = 3
+epoch = 200
 lr = 0.01
 weight_column = 10
 weight = np.ones((2, weight_column))

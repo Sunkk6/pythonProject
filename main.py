@@ -1,10 +1,16 @@
 import datetime
 import tensorflow as tf
 import numpy as np
-from sklearn.datasets import load_iris
+# from sklearn.datasets import load_iris
 from matplotlib import pyplot as plt
 
+'''转换模型'''
+# tensorflowjs_converter --input_format=keras --output_format=tfjs_layers_model saved_server/MobileNetV2.h5 saved_js/
+
+'''镜像安装包'''
 # pip install -i https://pypi.doubanio.com/simple/ 包名
+
+print("Hello")
 
 """================可视化==================="""
 # tensorboard --logdir logs/fit
@@ -60,6 +66,7 @@ from matplotlib import pyplot as plt
 # print(datetime.datetime.now().strftime("%Y年%m月%d日-%H时%M分%S秒"))
 # print(datetime.datetime.now())
 
+'''Cifar100标签'''
 label_100 = {19: 'cattle', 29: 'dinosaur', 0: 'apple', 11: 'boy', 1: 'aquarium_fish', 86: 'telephone', 90: 'train',
              28: 'cup', 23: 'cloud', 31: 'elephant', 39: 'keyboard', 96: 'willow_tree', 82: 'sunflower', 17: 'castle',
              71: 'sea', 8: 'bicycle', 97: 'wolf', 80: 'squirrel', 74: 'shrew', 59: 'pine_tree', 70: 'rose',

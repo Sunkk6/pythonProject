@@ -20,14 +20,14 @@ test_dataset = tf.data.Dataset.from_tensor_slices((x_test, y_test)).batch(bacth_
 
 class MyLayer(tf.keras.layers.Layer):
     def __init__(self, filter, kernel_size):
+        super().__init__()
         self.filter = filter
         self.kernel_size = kernel_size
-        super(MyLayer, self).__init__()
 
     def build(self, input_shape):
         self.weight = tf.Variable(tf.random.normal([self.kernel_size, self.kernel_size, input_shape[-1], self.filter]))
         self.bias = tf.Variable(tf.random.normal([self.filter]))
-        super(MyLayer, self).build(input_shape)
+        super().build(input_shape)
 
     def call(self, input_tensor):
         conv = tf.nn.conv2d(input_tensor, self.weight, strides=[1, 2, 2, 1], padding='SAME')
@@ -54,7 +54,10 @@ model.compile(optimizer=tf.optimizers.Adam(1e-3), loss=tf.losses.categorical_cro
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%m月%d日-%H时%M分%S秒")
 tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-model.fit(train_dataset, epochs=3, callbacks=[tensorboard_callback])
+model.fit(train_dataset, epochs=10, callbacks=[tensorboard_callback])
 
+model.evaluate(train_dataset)
+
+tf.saved_model.save(model, "saved/mnist")
 # score = model.evaluate(test_dataset)
 # print("last score:", score)
