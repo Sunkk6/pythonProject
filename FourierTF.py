@@ -1,8 +1,12 @@
 import numpy as np
 import tensorflow as tf
+
+
 from scipy import signal
 import matplotlib.pyplot as plt
 import time
+
+print(tf.__version__)
 
 num_epoch = 100
 lr = tf.constant(0.1)
@@ -45,7 +49,7 @@ for e in range(num_epoch):
     plt.ylim(-2, 2)
     plt.plot(t, signal_all)
     plt.pause(0.002)
-    print('第{}次:'.format(e+1), 'Training loss is :', loss.numpy())
+    print('第{}次:'.format(e + 1), 'Training loss is :', loss.numpy())
 plt.figure(2)
 plt.ylim(0, 0.005)
 plt.plot(np.linspace(0, num_epoch, num_epoch, endpoint=False), loss_plt.values())

@@ -9,6 +9,9 @@ from matplotlib import pyplot as plt
 
 '''镜像安装包'''
 # pip install -i https://pypi.doubanio.com/simple/ 包名
+# pip install -i https://repo.continuum.io/pkgs/main/ 包名
+# pip install --target=c:\anaconda\lib\site-packages scipy -i https://pypi.doubanio.com/simple/
+
 
 print("Hello")
 
